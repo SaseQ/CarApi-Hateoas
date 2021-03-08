@@ -1,8 +1,6 @@
 # CarApi
 # General
-Simple API.<br>
-Car as a model of application.<br>
-Api return json or xml.<br>
+Simple API. Car as a model of application. Api return json or xml.
 
 # Technologies
 <ul>
