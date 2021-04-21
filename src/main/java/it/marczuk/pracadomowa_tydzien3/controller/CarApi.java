@@ -66,7 +66,7 @@ public class CarApi {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Car> modSneakerParameter(@PathVariable long id, @RequestBody String modify) {
+    public ResponseEntity<Car> modCarParameter(@PathVariable long id, @RequestBody String modify) {
         Optional<Car> car = carService.modCarParameter(id, modify);
         return car.map(editCar -> {
             addLinkToCar(editCar);
