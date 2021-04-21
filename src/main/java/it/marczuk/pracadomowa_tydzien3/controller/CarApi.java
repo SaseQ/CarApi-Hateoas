@@ -1,6 +1,6 @@
 package it.marczuk.pracadomowa_tydzien3.controller;
 
-import it.marczuk.pracadomowa_tydzien3.entity.Car;
+import it.marczuk.pracadomowa_tydzien3.model.Car;
 import it.marczuk.pracadomowa_tydzien3.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -66,7 +66,7 @@ public class CarApi {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Car> modCarParameter(@PathVariable long id, @RequestBody String modify) {
+    public ResponseEntity<Car> modSneakerParameter(@PathVariable long id, @RequestBody String modify) {
         Optional<Car> car = carService.modCarParameter(id, modify);
         return car.map(editCar -> {
             addLinkToCar(editCar);

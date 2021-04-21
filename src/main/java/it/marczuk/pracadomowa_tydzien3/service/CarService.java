@@ -1,6 +1,6 @@
 package it.marczuk.pracadomowa_tydzien3.service;
 
-import it.marczuk.pracadomowa_tydzien3.entity.Car;
+import it.marczuk.pracadomowa_tydzien3.model.Car;
 
 import java.util.List;
 import java.util.Optional;
