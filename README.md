@@ -7,8 +7,8 @@ Simple API. Car as a model of application. Api return json or xml.
 spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=create
+spring.datasource.driver-class-name=
+spring.jpa.hibernate.ddl-auto=
 ```
 
 ## Technologies
