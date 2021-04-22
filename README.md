@@ -1,8 +1,8 @@
 # CarApi
-# General
+## General
 Simple API. Car as a model of application. Api return json or xml.
 
-# Technologies
+## Technologies
 <ul>
   <li>Java 8</li>
   <li>Maven</li>
