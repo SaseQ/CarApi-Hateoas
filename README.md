@@ -1,6 +1,8 @@
 # CarApi
 ## General
-Simple API. Car as a model of application. Api return json or xml.
+Simple API. 
+Model of application: `Car` 
+Api return: `json` or `xml`
 
 ## Properties
 ```
