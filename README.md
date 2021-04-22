@@ -1,6 +1,6 @@
 # CarApi
 ## General
-Simple API. 
+Simple REST API. 
 
 Model of application: `Car` 
 
