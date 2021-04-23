@@ -18,7 +18,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @RequestMapping(value = "/cars", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class CarApi {
 
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
     public CarApi(CarService carService) {

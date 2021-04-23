@@ -5,6 +5,7 @@ import it.marczuk.pracadomowa_tydzien3.model.Color;
 import it.marczuk.pracadomowa_tydzien3.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,27 +28,24 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Optional<Car> getCarById(Long id) {
-        List<Car> carList = repository.findAll();
-        return carList.stream().filter(car -> car.getId() == id).findFirst();
+        return repository.findAll().stream().filter(car -> car.getId() == id).findFirst();
     }
 
     @Override
     public List<Car> getCarsByColor(String color) {
-        List<Car> carList = repository.findAll();
-        return carList.stream().filter(car -> car.getColor().toString().equals(color)).collect(Collectors.toList());
+        return repository.findAll().stream().filter(car -> car.getColor().toString().equals(color)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Car> addCar(Car car) {
-        List<Car> carList = repository.findAll();
-        boolean isCarExists = carList.stream().anyMatch(newCar -> newCar.getMark().equals(car.getMark()));
+        boolean isCarExists = repository.findAll().stream().anyMatch(newCar -> newCar.getMark().equals(car.getMark()));
         return isCarExists ? Optional.empty() : Optional.of(saveCar(car));
     }
 
     @Override
+    @Transactional
     public Car modCar(Car newCar) {
-        Long id = newCar.getId()-1;
-        repository.deleteById(id);
+        repository.deleteById(newCar.getId());
         repository.save(newCar);
         return newCar;
     }
@@ -62,15 +60,13 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Optional<Car> removeCar(Long id) {
-        List<Car> carList = repository.findAll();
-        Optional<Car> first = carList.stream().filter(car -> car.getId() == id).findFirst();
+        Optional<Car> first = repository.findAll().stream().filter(car -> car.getId() == id).findFirst();
         first.ifPresent(repository::delete);
         return first;
     }
 
     private Optional<Car> updateCarMethod(long id, String type, String modArg){
-        List<Car> carList = repository.findAll();
-        Optional<Car> first = carList.stream().filter(car -> car.getId() == id).findFirst();
+        Optional<Car> first = repository.findAll().stream().filter(car -> car.getId() == id).findFirst();
         if(first.isPresent()) {
             if(type.equals("mark")){
                 first.get().setMark(modArg);
@@ -81,6 +77,8 @@ public class CarServiceImpl implements CarService {
             if(type.equals("color")){
                 first.get().setColor(Color.valueOf(modArg));
             }
+            repository.deleteById(first.get().getId());
+            repository.save(first.get());
             return first;
         }
         return Optional.empty();
